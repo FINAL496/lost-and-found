@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>University Lost and Found</title>
+<style>
+         
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+
+header {
+background-color: #224284;
+color: white;
+text-align: center;
+padding: 3px;
+}
+
+#lost-found-form {
+max-width: 430px;
+margin: 20px auto;
+background-color: lightgrey;
+padding: 10px;
+border:1px solid ;
+border-radius: 20px;
+height:550px; 
+       
+}
+
+label {
+display: block;
+margin-bottom: 5px;
+
+}
+
+        select, input[type="text"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        select {
+            appearance: none; /* Remove default appearance */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            background-image: url("arrow.png"); /* Customize the dropdown arrow image */
+            background-position: right center;
+            background-repeat: no-repeat;
+        }
+
+        select:focus {
+            outline: none; /* Remove the focus outline */
+        }
+
+        button {
+            background-color:  #224284;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+   
+        }
+
+         
+
+         
+.submit
+{
+text-align: center;
+
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lost and Found</h1>
+    </header>
+
+    <section id="lost-found-form">
+        <h2>REPORT LOST OR FOUND ITEM</h2>
+        <form action="submit_form.php" method="post">
+            <label for="lost_or_found">Did you lose or find an item?</label>
+            <select id="lost_or_found" name="lost_or_found" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+            </select>
+            
+              <label for="rrn_no">RRN No:</label>
+            <input type="text" id="rrn_no" name="number" required pattern="\d{12}" title="Please enter correct rrn no">
+            
+             <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+            
+            <label for="description">Description (Date, Time, Details):</label>
+            <textarea id="description" name="description" rows="3" required></textarea>
+            
+            <label for="image">Upload an Image:</label>
+            <input type="file" id="image" name="image">
+            <div class="submit">
+            <button type="submit">Submit</button>
+            </div>
+          
+        </form>
+    </section>
+
+     
+</body>
+</html>
