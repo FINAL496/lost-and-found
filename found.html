@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Lost and Found</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lost and Found</h1>
+    </header>
+
+    <section id="lost-found-form">
+        <h2>REPORT LOST OR FOUND ITEM</h2>
+        <form action="javascript:void(0);" method="post" onsubmit="submitForm(); return false;">
+            <label for="lost_or_found">Did you lose or find an item?</label>
+            <select id="lost_or_found" name="lost_or_found" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+            </select>
+            
+            <label for="number">RRN No:</label>
+            <input type="text" id="number" name="number" required pattern="\d{12}" title="Please enter correct rrn no">
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+            
+            <label for="description">Description (Date, Time, Details):</label>
+            <textarea id="description" name="description" rows="3" required></textarea>
+            
+            <label for="image">Upload an Image:</label>
+            <input type="file" id="image" name="image">
+            
+            <div class="submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div id="response"></div>
+    </section>
+
+    <script>
+        function submitForm() {
+            var lostOrFound = document.getElementById("lost_or_found").value;
+            var rrnNo = document.getElementById("number").value;
+            var name = document.getElementById("name").value;
+            var contact = document.getElementById("contact").value;
+            var description = document.getElementById("description").value;
+
+            var formData = {
+                lost_or_found: lostOrFound,
+                number: rrnNo,
+                name: name,
+                contact: contact,
+                description: description
+            };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "process_form.php", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById("response").innerHTML = xhr.responseText;
+                    } else {
+                        document.getElementById("response").innerHTML = "Failed to send the data. Please try again later.";
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(formData);
+        }
+    </script>
+</body>
+</html>
